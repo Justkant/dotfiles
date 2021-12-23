@@ -1,0 +1,54 @@
+# zgenom installation
+# git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
+
+# load zgenom
+source "${HOME}/.zgenom/zgenom.zsh"
+
+# Check for plugin and zgenom updates every 7 days
+# This does not increase the startup time.
+zgenom autoupdate
+
+# enable error redirect from react-native app
+export REACT_EDITOR="code"
+
+# check if there's no init script
+if ! zgenom saved; then
+    echo "Creating a zgenom save"
+
+    zgenom ohmyzsh
+
+    # plugins
+    zgenom ohmyzsh plugins/ssh-agent
+    zgenom ohmyzsh plugins/docker
+    zgenom ohmyzsh plugins/docker-compose
+    zgenom ohmyzsh plugins/sudo
+    zgenom ohmyzsh plugins/common-aliases
+    zgenom ohmyzsh plugins/command-not-found
+    zgenom ohmyzsh plugins/git
+    zgenom ohmyzsh plugins/gitfast
+    zgenom ohmyzsh plugins/node
+    zgenom ohmyzsh plugins/npm
+    zgenom ohmyzsh plugins/yarn
+    zgenom ohmyzsh plugins/emacs
+    zgenom ohmyzsh plugins/kubectl
+    zgenom ohmyzsh plugins/vscode
+    zgenom ohmyzsh plugins/gcloud
+    zgenom load zsh-users/zsh-syntax-highlighting
+    zgenom load zsh-users/zsh-autosuggestions
+
+    # completions
+    zgenom load zsh-users/zsh-completions src
+    zgenom load lukechilds/zsh-better-npm-completion
+
+    # theme
+    zgenom ohmyzsh themes/clean
+
+    # save all to init script
+    zgenom save
+
+    # Compile your zsh files
+    zgenom compile "$HOME/.zshrc"
+fi
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
