@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if ! gpg -K 82F57A20D22EF59F &>/dev/null ; then
+  echo "{{ (index (lastpass "kant/gpg") 0).note.privateKey }}" | gpg --batch --passphrase "{{ (index (lastpass "kant/gpg") 0).note.passphrase }}" --import
+  echo "8DB40F3445CEBCC20458351082F57A20D22EF59F:6:" | gpg --import-ownertrust
+fi

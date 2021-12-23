@@ -1,0 +1,14 @@
+[user]
+	email = quent92100@gmail.com
+	name = Kant
+	signingkey = 82F57A20D22EF59F
+[commit]
+	gpgsign = true
+[push]
+	default = current
+[color]
+	ui = auto
+[pull]
+	rebase = true
+[core]
+	editor = code --wait
