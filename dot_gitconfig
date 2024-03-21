@@ -6,6 +6,8 @@
 	gpgsign = true
 [push]
 	default = current
+[rebase]
+	updateRefs = true
 [color]
 	ui = auto
 [pull]
